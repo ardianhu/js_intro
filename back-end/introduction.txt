@@ -1,0 +1,109 @@
+we are gonna use REST API(application program interface) because this f IPI connect two different system: client and server.
+berikut beberapa sifat yang menjadi kunci pada rest API
+
+1. Client-Server:
+Server harus bisa merespons permintaan yang dilakukan client, baik itu respon berhasil atau gagal. komunikasi ini dilakukan melalui protokol http
+
+2. stateless:
+REST API tidak boleh menyimpan keadaan/state apapun terkait client. seluruh state harus tetap disimpan di client. artinya tidak ada session di REST API.
+permintaan client harus mengandung informasi yang jelas. jangan berharapp REST API akan menyimpan informasi dari permintaan sebelumnya untuk diguanakan di permintaan selanjutnya.
+
+3. Cacheable:
+agar dapat merespon permintaan dengan cepat, sebaiknya REST  API menerapkan prinsip cache. sehingga setiap permintaan tidak melulu mengambil dari database.
+
+4. Layered:
+ketika REST API server memiliki arsitektur yang komplek, client seharusnya tidak perlu tahu bagaimana server melayaninya.
+
+Selain itu, terdapat konsep-konsep yang harus ditetapkan dalam membangun REST API:
+
+- Format request dan response.
+- HTTP Verbs/Methods.
+- HTTP Response code.
+- URL Design.
+
+Format request dan response usually use JSON or XML(outdated).
+
+HTTP Verbs/Methods uses HTTP so we are gonna use HTTP verbs to determine an action. GET to get data, POST to send new data, PUT to update an exsisting data, and DELETE to delete data. a basic CRUD.
+
+HTTP Response Code is a 3 digit code to  determine the response status from server.
+200 = OK = request successfully executed.
+201 = Created = server successfully create/add resource as client request.
+400 = Bad request = request fail, because the input not match to the server expectaion, fail on validation.
+401 = Unauthorized = request fail, because the user does't have authorization to perform the request. user doesn't authorized.
+403 = Forbidden = request fail, user don't have access to the resource.
+404 = Not Found = request fail, the resource not found.
+500 = Internal Server Error = request fail, server had error.
+503 = Service Unavailable = request fail, server cannot handle the request.
+
+URL Design
+URL, Path, or Endpoint is an important thing to be considered in building REST API, with a good endpoint, the using of API will be easier to understand and implemented.
+there are general rules or unspoken rules :D to be used 
+so what a standard to be used in building REST API:
+
+USE NOUN INSTEAD OF VERB IN ENDPOINT PATH:
+avoid using verb like /getArticles or /addArticles, because action is defined clearly in HTTP verb, so just use GET /articles and POST /articles.
+
+USE PLURAL IN ENDPOINT TO RESOURCE COLLECTION:
+use plural in endpoint name. because its rarely a data that have just one item. ex /articles not /article
+and what about to get one specific data? use a parameter like /articles/:INSTEAD
+
+USE CHAINED ENDPOINT FOR RESOURCE THAT HAVE HIERARCHY:
+example to get a commentar for an article the endpoint should be look like this: GET /articles/:id/comments
+
+the next step is we will use node.js for back-endpoint
+we will need text editor(VS Code) and node.js
+pastikan kita sudah menginstall node.js in our computer
+'node -v' to check the node version
+
+What is Node.js
+
+at the first place js is used or executed only in the browser
+so developer need another programming langguage to handle the backend side. js only in the client side.
+fortunately since 2009 Ryan Dahl created Node.js, a technology that expected by develeoper around the world.
+Node.js become javascript runtime yang bisa mengeksekusi kode javascript di luar browser.
+this is where js is shining.
+now its multiplatform, and the most popular programming langguage since 2014.
+
+so lets start create an application in this directory
+
+and run 'npm init' to create package.json
+
+next is run js using node.js
+we can use node REPL and excecuting js files
+
+NODE REPL(Read Eval Print Loop)
+to use this is simple, just type 'node' in terminal an voila
+and here we can type js syntax just like another programming langguage that performs in console or terminal.
+ex: console.log('hello world')
+the output will be 
+hello world
+undefined
+
+undefined appears because REPL show evaluation(eval) value in console, and console.log() doesn't return a single value, so there's a value.
+to make this clear lets try another example
+type '2 + 2'
+the output will be:
+4
+
+there's no undefined because 2+2 will return a value of 4
+
+and what about a code more than 1 line
+we can type '.editor' to enter editor mode
+and write a code in here, and Ctrl+D to finish, Ctrl+C to cancel
+like code below:
+const welcome = (name) => {
+    return `Welcome ${name}`;
+}
+welcome('ardian');
+and hit Ctrl+D and the output will be:
+Welcome ardian
+
+a value of any variable we create in REPL can be e accessed while you're still inside the REPL. REPL store the memory when there's active session.
+
+
+JS files
+
+we can create a file with .js extention.
+lets say its index.js
+go to index.js
+

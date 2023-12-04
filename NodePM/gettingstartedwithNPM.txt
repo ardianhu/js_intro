@@ -1,0 +1,60 @@
+semakin kompleks sebuah aplikasi maka semakin banyak pula package yang diperlukan
+NPM(Node Package Manager) bisa membantu pengelolaan package, seperti memasang dan menghapus package.
+'npm help' untuk melihat daftar syntax yang tersedia 
+'npm install -h'  untuk melihat panduan penggunaan perintah install.
+di dalam panduan install kita akan melihat aliases, yeng mana merupakan cara lain dalam melakukan perintah tersebut
+'npm install'
+'npm i'
+'npm in'
+'npm ins'
+'npm instal'
+'npm add'
+semua command di atas memiliki fungsi yang sama
+
+Installing Packages
+pastikan kita mempunyai package.json, jika belum jalankan 'npm init' untuk membuat package.json
+sbelum melakukan install package, perlu diketahui bahwa ada dua jenis instalasi package, yaitu lokal dan global.
+lokal akan diletakkan atau dipasang dalam direktori atau folder yang sama dengan project kita. yaitu di dalam folder node_modules.
+sementara global akan di pasang di sistem perangkat(tergantung pengaturan saat instalasi node/npm)
+
+umumya semua package harus diinstal secara lokal
+dengan syntax ini:
+npm install <package-name>
+lalu kapan kita menggunakan global package?
+sebuah package harus diinstal secara global hanya saat ia menyediakan perintah yang dapat dieksekusi dari CLI dan digunakan kembali di semua project
+seperti:
+npm
+nodemon
+mocha
+dan untuk menginstal package secara global dengan command di bawah ini
+npm install -g <package-name>
+
+kali ini kita akan mencoba menginstal lodash
+jalankan command berikut di command prompt
+'npm install lodash'
+
+setelah berhasil, kita bisa periksa file package.json. dan akan muncul object baru 'dependencies' yang berisi package yang telah kita tambahkan ke dalam project yang diikuti dengan versinya
+
+sebenarnya terdapat dua tipe object dependencies dalam berkas package.json yaitu:
+dependencies
+devDependencies
+
+dependencies merupakan objek yang menampung package yang kita gunakan untuk membuat aplikasi
+sedangkan devDependencies digunakan untuk package yang berkaitan hanya saat proses pengembangan aplikasi seperti jest yang diguanakan untuk testing.yang hanya digunakan saat proses pengembangan. tidak saat rilis.
+untuk devDependencies gunakan command berikut:
+npm install <package-name> --save-devDependencies
+mari kita coba dengan jest
+npm install jest --save-devDependencies
+and you can see it too in package.json and package-lock.json
+
+and let se how to load a package in index.json
+
+to uninstall a package
+'npm uninstall <package-name>' jika package ada di dependencies
+'npm uninstall <package-name> --save-dev' jika package ada di devDependencies
+
+contoh 'npm uninstall lodash'
+command di atas akan menghapus nilai object di package.json. serta semua berkas yang berhubungan denga lodash di folder node_modules
+dan tentu semua fungsi-fungsi dari package lodash sudah tidak bisa digunakan lagi
+
+'npm uninstall -h' untuk melihat panduan uninstall
